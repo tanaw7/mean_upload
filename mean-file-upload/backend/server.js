@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // MongoDB settings
-mongoose.connect("mongodb+srv://tanapuch:Hm3cdy7Umm8fiVvF@cluster0-0euso.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://tanapuch:Hm3cdy7Umm8fiVvF@cluster0-0euso.mongodb.net/transperfectMean?retryWrites=true&w=majority", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   })
@@ -72,6 +72,7 @@ app.post('/api/upload', upload.single('image'), function (req, res) {
           // someStr.replace(/"/g, '') This removes double quotes from strings.
           // The condition is to insert "null" as a placeholder in case the line does not contain a string.
           // This is to prevent TypeError of undefined.
+
 
           key: (splitLine[0]===undefined ? "null" : splitLine[0].replace(/"/g, '')),
           value: (splitLine[1]===undefined ? "null" : splitLine[1].replace(/"/g, ''))
