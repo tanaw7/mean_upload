@@ -50,6 +50,20 @@ app.post('/api/upload', upload.single('image'), function (req, res) {
   } else {
     console.log('File is available!');
 
+    fs.readFile(req.file.path, 'utf8', function(err, data) {
+      //if(err)throw err;
+      let obj = {};
+      let splitted = data.toString().split("\n");
+      for (let i = 0; i < splitted.length; i++) {
+        let splitLine = splitted[i].split("=");
+        const post = new Post({
+          key: splitLine[0],
+          value: splitLine[1]
+        });
+        console.log(post);
+      }
+    });
+
     return res.send({
       success: true
     })
