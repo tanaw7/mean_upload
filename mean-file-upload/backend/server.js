@@ -33,7 +33,16 @@ app.use(bodyParser.urlencoded({
 }));
 
 // MongoDB settings
-mongoose.connect("mongodb+srv://tanapuch:Hm3cdy7Umm8fiVvF@cluster0-0euso.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://tanapuch:Hm3cdy7Umm8fiVvF@cluster0-0euso.mongodb.net/test?retryWrites=true&w=majority", {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log('Connected to database!')
+  })
+  .catch(() => {
+    console.log('Connection failed!');
+  });
 
 app.get('/api', function (req, res) {
   res.end('File catcher');
