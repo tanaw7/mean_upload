@@ -79,6 +79,8 @@ app.post('/api/upload', upload.single('image'), function (req, res) {
         });
         console.log(post);
         post.save()
+
+        //Taking a break
       }
     });
 
