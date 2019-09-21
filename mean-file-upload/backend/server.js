@@ -4,6 +4,8 @@ const express = require('express'),
   multer = require('multer'),
   bodyParser = require('body-parser');
 
+const mongoose = require('mongoose');
+
 const Post = require('./models/post');
 
 // File upload settings
@@ -30,6 +32,9 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+// MongoDB settings
+mongoose.connect("mongodb+srv://tanapuch:Hm3cdy7Umm8fiVvF@cluster0-0euso.mongodb.net/test?retryWrites=true&w=majority");
+
 app.get('/api', function (req, res) {
   res.end('File catcher');
 });
@@ -40,7 +45,6 @@ filePath = ''
 
 app.post('/api/upload', upload.single('image'), function (req, res) {
   var result = '';
-
   if (!req.file) {
     console.log("No file is available!");
     return res.send({
