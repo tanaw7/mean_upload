@@ -4,7 +4,9 @@ const express = require('express'),
   multer = require('multer'),
   bodyParser = require('body-parser');
 
-// File upload settings  
+const Post = require('./models/post');
+
+// File upload settings
 const PATH = './uploads';
 
 let storage = multer.diskStorage({
@@ -12,7 +14,7 @@ let storage = multer.diskStorage({
     cb(null, PATH);
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now())
+    cb(null, file.originalname + '-' + Date.now() + '.strings')
   }
 });
 
@@ -33,7 +35,12 @@ app.get('/api', function (req, res) {
 });
 
 // POST File
+const fs = require('fs')
+filePath = ''
+
 app.post('/api/upload', upload.single('image'), function (req, res) {
+  var result = '';
+
   if (!req.file) {
     console.log("No file is available!");
     return res.send({
@@ -42,6 +49,7 @@ app.post('/api/upload', upload.single('image'), function (req, res) {
 
   } else {
     console.log('File is available!');
+
     return res.send({
       success: true
     })

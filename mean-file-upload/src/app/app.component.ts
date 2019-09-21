@@ -13,7 +13,7 @@ const URL = 'http://localhost:8080/api/upload';
 export class AppComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({
     url: URL,
-    itemAlias: 'file'
+    itemAlias: 'image'
   });
 
   constructor(private toastr: ToastrService) { }
