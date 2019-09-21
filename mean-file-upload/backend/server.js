@@ -64,16 +64,21 @@ app.post('/api/upload', upload.single('image'), function (req, res) {
     console.log('File is available!');
 
     fs.readFile(req.file.path, 'utf8', function(err, data) {
-      //if(err)throw err;
-      let obj = {};
-      let splitted = data.toString().split("\n");
+
+      let splitted = data.toString().split(";\n");
       for (let i = 0; i < splitted.length; i++) {
-        let splitLine = splitted[i].split("=");
+        let splitLine = splitted[i].split(" = ");
         const post = new Post({
-          key: splitLine[0],
-          value: splitLine[1]
+          // someStr.replace(/"/g, '') This removes double quotes from strings.
+          // The condition is to insert "null" as a placeholder in case the line does not contain a string.
+          // This is to prevent TypeError of undefined.
+
+          key: (splitLine[0]===undefined ? "null" : splitLine[0].replace(/"/g, '')),
+          value: (splitLine[1]===undefined ? "null" : splitLine[1].replace(/"/g, ''))
+
         });
         console.log(post);
+        post.save()
       }
     });
 
