@@ -11,6 +11,10 @@ const URL = 'http://localhost:8080/api/upload';
 })
 
 export class AppComponent implements OnInit {
+  postsJson = '';
+  postsStrings = '';
+  expression = false;
+
   public uploader: FileUploader = new FileUploader({
     url: URL,
     itemAlias: 'image'
@@ -28,4 +32,7 @@ export class AppComponent implements OnInit {
     };
   }
 
+  onAddPost() {
+    this.expression = true;
+  }
 }
