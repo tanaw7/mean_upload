@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     CommonModule,
-    BrowserAnimationsModule, //requires animations module
+    BrowserAnimationsModule, // requires animations module
     ToastrModule.forRoot(), // ToastrModule added
     FormsModule
   ],
