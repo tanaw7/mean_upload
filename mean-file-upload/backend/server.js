@@ -105,7 +105,7 @@ app.post('/api/upload', upload.single('image'), function (req, res, next) {
 app.get("/api/fetchPostsJson", (req, res, next) => {
   Post.find().then(documents => {
     //console.log(documents);
-    res.send(documents);
+    res.json(documents);
   });
 });
 
